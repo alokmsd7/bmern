@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const cors=require("cors");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const authRoute = require("./routes/auth");
@@ -9,7 +10,14 @@ const categoryRoute = require("./routes/category");
 const multer = require("multer");
 const path = require("path");
 
+
 dotenv.config();
+const corsOptions={
+  origin:"http://localhost:3000"
+}
+
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use("/images", express.static(path.join(__dirname, "/images")));
 
